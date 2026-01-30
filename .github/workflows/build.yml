@@ -70,10 +70,6 @@ jobs:
           set-safe-directory: true
           token: ${{ secrets.GH_TOKEN }}      
 
-      - name: Set safe directory
-        run: git config --global --add safe.directory /__w/BasicDevSetup/BasicDevSetup'
-        shell: bash
-
       - name: Build Documentation
         run: uv run sphinx-build -j $(nproc) -b html . ./build-docs -c ./docs/ -W && cp docs/_static/index_with_redirect.html build-docs/index.html
         shell: bash
