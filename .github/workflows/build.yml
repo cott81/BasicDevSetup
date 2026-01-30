@@ -35,10 +35,6 @@ jobs:
           set-safe-directory: true
           token: ${{ secrets.GH_TOKEN }}      
 
-      - name: Set safe directory
-        run: git config --global --add safe.directory '/__w/cott81/basic_dev_setup'
-        shell: bash
-
       - name: Configure basic_dev_setup as ${{ matrix.variant }} variant
         run: cmake --preset ${{ matrix.variant }}-x86-64
         shell: bash
@@ -71,11 +67,11 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
 
       - name: ls
-        run: ls -la  && pwd && ls -la /__w/cott81/basic_dev_setup
+        run: ls -la  && pwd && ls -la /__w/BasicDevSetup/BasicDevSetup && git status
         shell: bash 
 
       - name: Set safe directory
-        run: git config --global --add safe.directory '/__w/cott81/basic_dev_setup'
+        run: git config --global --add safe.directory '/__w/BasicDevSetup/BasicDevSetup'
         shell: bash          
 
       - name: Build Documentation
