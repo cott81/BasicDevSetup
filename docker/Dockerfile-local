@@ -1,0 +1,33 @@
+ARG BASE_IMAGE=kid2le/base-build:docs-deps-latest
+FROM ${BASE_IMAGE}
+
+ARG USERNAME
+ARG UID
+
+RUN LOCAL_USER=$(id -nu ${UID}); \
+    if [ -n "${LOCAL_USER}" ]; then \
+      echo "Remove duplicated local user with UID=${UID}: ${LOCAL_USER}"; \
+      gpasswd -d ${LOCAL_USER} ${LOCAL_USER}; \
+      deluser --remove-home ${LOCAL_USER}; \
+    fi
+
+RUN groupadd --gid ${UID} ${USERNAME} \
+    && useradd --no-log-init -m ${USERNAME} -u ${UID} -g ${USERNAME} -G ${USERNAME} -d /home/${USERNAME} \
+    && echo "${USERNAME}:${USERNAME}" | chpasswd \
+    && adduser ${USERNAME} sudo \
+    && echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+USER ${USERNAME}
+
+WORKDIR /home/${USERNAME}
+
+# Pull the git-prompt.sh and git-completion.bash files
+RUN curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o git-prompt.sh
+RUN curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o git-completion.bash
+
+ARG GIT_CONFIG_NAME
+ARG GIT_CONFIG_EMAIL
+
+RUN git config --global user.name "${GIT_CONFIG_NAME}"
+RUN git config --global user.email "${GIT_CONFIG_EMAIL}"
+

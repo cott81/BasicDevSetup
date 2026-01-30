@@ -1,0 +1,42 @@
+[codelinks]
+outdir = "output"
+set_remote_url = true
+
+[codelinks.projects.basic_dev_setup.source_discover]
+src_dir = "../src"
+exclude = []
+include = []
+gitignore = true
+comment_type = "cpp"
+
+[codelinks.projects.basic_dev_setup.analyse]
+get_need_id_refs = true
+get_oneline_needs = true
+get_rst = true
+
+[codelinks.projects.basic_dev_setup.analyse.oneline_comment_style]
+start_sequence = "@"
+# End sequences is newline by default. Whether it is "\n" or "\r\n" depending on the platform
+end_sequence = "\n"
+field_split_char = ","
+needs_fields = [
+    { name = "title", type = "str" },
+    { name = "id", type = "str" },
+    { name = "type", type = "str", default = "impl" },
+    { name = "implements", type = "str" },
+    { name = "design", type = "str" },
+    { name = "status", type = "str" },
+    { name = "feature", type = "str" },
+    { name = "verify", type = "str" },
+]
+
+[codelinks.projects.basic_dev_setup.analyse.need_id_refs]
+markers = ["@need-ids:"]
+
+[codelinks.projects.basic_dev_setup.analyse.marked_rst]
+start_sequence = "@rst"
+end_sequence = "@endrst"
+
+[codelinks.projects.basic_dev_setup]
+# replace <repo> with real repo name
+remote_url_pattern = "https://github.com/cott81/BasicDevSetup/blob/{commit}/{path}#L{line}"

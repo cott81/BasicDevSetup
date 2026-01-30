@@ -1,0 +1,95 @@
+COMPONENT NAME - Detailed Design (DRAFT)
+=============================================
+
+.. IMPORTANT: this is a template file. Move this template file into the component docs folder. Please replace "COMPONENT NAME" with the actual name of your component and fill in the sections below.
+
+
+.. arch-swc:: COMPONENT NAME
+   :id: SWC_COMPONENT NAME
+   :status: draft
+   :specified_by: REQ_SW_XY
+   :feature: FeatureY
+
+   The level 1 component **COMPONENT NAME** is responsible for ... (one sentence summary of the component).
+
+
+
+Purpose and Concept
+---------------------------
+
+- What is the purpose of the function to be designed?
+- What functionality is to be designed?
+- Is the function safety critical? If yes, describe what safety critical is.
+- The concept behind the function, algorithms, and high-level interactions
+
+Requirements
+---------------------------
+
+- Link to the software requirements relevant to this component.
+- Optional: List of requirements (tags, numbers, heading)
+
+.. needtable::
+   :columns: id, title, safety_integrity, security_relevance, verification_criteria
+   :filter: type == 'req-sw' and ('SWC_COMPONENT NAME' in specified_by_back)
+   :sort: id
+
+
+Integration into Software Architecture
+------------------------------------------
+
+- Block diagram: How are the new and/or adapted components integrated into the existing architecture (layers, interfaces, call sequence, storage, error handling, …) provided and required interfaces
+- Sequence diagrams showing interaction between this component and other components (if necessary)
+
+
+Design Constraints
+---------------------------
+
+- Any constraints which impact the design. This may include:
+   - Integration constraints (size, execution time, process raster)
+   - interface specifications e.g. Corba, DCOM
+   - resource considerations,
+   - the use of a specific design pattern,
+   - mandated re-use of existing elements,
+   - Variant handling 
+
+
+Component Design
+---------------------------
+
+- Description of the design
+- Component diagram for new and/or adapted modules with interface description
+- If architectural relevant, describe also the internals of the module
+   - Class diagrams 
+- (showing interactions between internal sub-components)
+- Design of safety critical part
+   - How is the initialization ensured?
+   - What calibration is required? 
+
+Configuration
+---------------------------
+
+- Configuration (e.g. Parameters like #defines etc.)
+
+
+Errors
+---------------------------
+
+- Errors list of what the component can detect/return.
+
+
+Testing
+---------------------------
+
+- Test description, not fully defined, only collection of test ideas
+- Description of tests to be performed 
+
+
+
+UselessCmp - Implementations
+================================
+
+.. src-trace::
+   :project: basic_dev_setup
+   :directory: ./compA/<path to component>
+
+

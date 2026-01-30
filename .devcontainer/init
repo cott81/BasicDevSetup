@@ -1,0 +1,60 @@
+#!/bin/bash
+set -e
+set -o pipefail
+
+SCRIPT_PATH=$(realpath "$(dirname ${BASH_SOURCE[0]})")
+
+# change this to final registry image name
+DEV_CONTAINER_FILE=Dockerfile-base-dev
+DEV_CONTAINER_IMAGE=basic_dev_setup/base-build:dev-latest
+
+DEV_CONTAINER_LOCAL_IMAGE=basic_dev_setup/${USER}:dev-container
+
+
+FORCE_REBUILD=${FORCE_REBUILD:-false}
+
+# Detect with git if Dockerfile-base-dev has changed
+if ! git diff --quiet ${SCRIPT_PATH}/../docker/${DEV_CONTAINER_FILE}; then
+    FORCE_REBUILD=true
+fi
+
+if ! docker inspect "${DEV_CONTAINER_IMAGE}" &> /dev/null; then
+    FORCE_REBUILD=true
+fi
+
+if [[ ${FORCE_REBUILD} == true ]]; then
+    echo "🐳 Build Dev Container image ${DEV_CONTAINER_IMAGE} based on ${DEV_CONTAINER_FILE}"
+    docker build \
+        -t "${DEV_CONTAINER_IMAGE}" \
+        --network=host \
+        --no-cache \
+        -f ${SCRIPT_PATH}/../docker/${DEV_CONTAINER_FILE} "${SCRIPT_PATH}/.."
+else
+    echo "🐳 Dev Container image ${DEV_CONTAINER_IMAGE} is up to date"
+fi
+
+# Detect with git if Dockerfile-local has changed
+if ! git diff --quiet ${SCRIPT_PATH}/../docker/Dockerfile-local; then
+    FORCE_REBUILD=true
+fi
+
+# Detect with docker instpect if Dockerfile-local image is there
+if ! docker inspect "${DEV_CONTAINER_LOCAL_IMAGE}" &> /dev/null; then
+    FORCE_REBUILD=true
+fi
+
+if [[ ${FORCE_REBUILD} == true ]]; then
+    echo "🐳 Build local Dev Container image ${DEV_CONTAINER_IMAGE} based on ${IMAGE_NAME} with user $(whoami) and UID $(id -u)"
+    docker build \
+        -t ${USER}:dev-container \
+        --no-cache \
+        --network=host \
+        --build-arg BASE_IMAGE="${DEV_CONTAINER_IMAGE}" \
+        --build-arg USERNAME="$(whoami)" \
+        --build-arg UID="$(id -u)" \
+        --build-arg GIT_CONFIG_NAME="$(git config --get user.name)" \
+        --build-arg GIT_CONFIG_EMAIL="$(git config --get user.email)" \
+        -f ${SCRIPT_PATH}/../docker/Dockerfile-local "${SCRIPT_PATH}/.."
+else 
+    echo "🐳 Local Dev Container image ${DEV_CONTAINER_LOCAL_IMAGE} is up to date"
+fi

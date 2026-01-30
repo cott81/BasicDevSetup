@@ -1,0 +1,1 @@
+"""Base sphinx configuration."""

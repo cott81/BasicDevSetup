@@ -1,0 +1,41 @@
+FROM ubuntu
+
+# Set up general dependencies
+RUN apt-get update && \
+    apt-get install -y \
+    sudo \
+    curl \
+    git \
+    vim \
+    locales \
+    zip && \
+    apt-get clean
+
+# Set up C dev dependencies
+RUN apt-get update && \
+    apt-get install -y \
+    cmake \
+    build-essential \
+    gdb
+
+# generate locales
+RUN locale-gen en_US.UTF-8
+
+# Set up doc dev dependencies
+RUN apt-get update && \
+    apt-get install -y \
+    python3 \
+    plantuml 
+
+# Install plantuml in newer version
+RUN curl -sSLO https://github.com/plantuml/plantuml/releases/download/v1.2024.5/plantuml-1.2024.5.jar
+RUN mv plantuml-1.2024.5.jar /usr/share/plantuml/plantuml.jar
+
+# Install uv for python environment management (sphinx-needs docs generation)
+RUN curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR="/usr/local/bin" sh
+
+# Set UV environment variable to point to the virtual environment location inside the docker container to avoid issues between host usage and container usage. 
+# the .venv contains links to uv "host installation". If installed within the container, the links are different as if installed on host. 
+# We avoid the conflict by setting the environment variable to a fixed path within the container (not in the volume). 
+RUN mkdir -p /usr/share/proj_venv/ && chmod 777 /usr/share/proj_venv/
+ENV UV_PROJECT_ENVIRONMENT=/usr/share/proj_venv/.venv/

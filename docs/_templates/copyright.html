@@ -1,0 +1,6 @@
+{% if show_copyright and copyright %}
+  <p class="copyright">
+      {% trans copyright=copyright|e %}© {{ copyright }}{% endtrans %}
+      <br/>
+  </p>
+{% endif %}

@@ -1,0 +1,68 @@
+{
+    "version": 3,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 20,
+        "patch": 0
+    },
+    "configurePresets": [                     
+        {
+            "name": "variantX-x86-64",
+            "displayName": "variantX for x86-64",
+            "description": "variantX build configuration for x86-64 target",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build/variantX/x86",
+            "toolchainFile": "${sourceDir}/cmake/toolchains/win-gcc-x86-64.cmake",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "RC_VARIANT": "variantX",
+                "USE_CERTIFIED_GTEST": false
+            },
+            "environment": {
+                "PLATFORM_PATH": "${sourceDir}/src/moduleA"
+            }
+        },
+        {
+            "name": "variantY-x86-64",
+            "displayName": "variantY for x86-64",
+            "description": "variantY build configuration for x86-64 target",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build/variantY/x86",
+            "toolchainFile": "${sourceDir}/cmake/toolchains/win-gcc-x86-64.cmake",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "RC_VARIANT": "variantY",
+                "USE_CERTIFIED_GTEST": false
+            },
+            "environment": {
+                "PLATFORM_PATH": "${sourceDir}/src/moduleA"
+            }
+        }  
+    ],
+    "buildPresets": [       
+        {
+            "name": "variantX-x86-64-build",
+            "displayName": "Build variantX for x86-64",
+            "configurePreset": "variantX-x86-64",
+            "jobs": 4
+        },
+        {
+            "name": "variantY-x86-64-build",
+            "displayName": "Build variantY for x86-64",
+            "configurePreset": "variantY-x86-64",
+            "jobs": 4
+        }        
+    ],
+    "testPresets": [
+        {
+            "name": "test-all",
+            "displayName": "Run All Tests",
+            "configurePreset": "variantX-x86-64",
+            "output": {
+                "outputOnFailure": true
+            }
+        }
+    ]
+}

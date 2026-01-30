@@ -1,0 +1,32 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+        {
+            "label": "build-docs-live",
+            "type": "shell",
+            "command": "mkdir -p build-docs && cp docs/_static/index_with_redirect.html build-docs/index.html && uv run sphinx-autobuild --port=8338 -c ${workspaceFolder}/docs/ ${workspaceFolder} ${workspaceFolder}/build-docs"
+        },        
+        {
+            "label": "build-docs",
+            "type": "shell",
+            "command": "uv run sphinx-build -j $(nproc) -b html ${workspaceFolder} ${workspaceFolder}/build-docs -c ${workspaceFolder}/docs/ -W && cp docs/_static/index_with_redirect.html build-docs/index.html"
+        },
+        {
+            "label": "run unit tests",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/build/${input:basic_dev_setup-variant}/x86 && ctest -j $(nproc) --output-on-failure --progress"
+        },  		
+	],
+    "inputs": [
+        {
+            "id": "basic_dev_setup-variant",
+            "description": "What basic_dev_setup variant?",
+            "type": "pickString",
+            "options": [
+                "variantX",
+                "variantY"
+            ],
+            "default": "variantX"
+        }
+    ]
+}

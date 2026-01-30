@@ -1,0 +1,32 @@
+[project]
+name = "basic_dev_setup"
+version = "0.0.1"  # do not change this version manually
+description = ""
+classifiers = ["Private :: Do Not Upload"]
+requires-python = ">=3.12"
+dependencies = [
+    "breathe>=4.36.0",
+    "gitpython>=3.1.45",
+    "myst-parser>=4.0.1",
+    "pillow>=11.3.0",
+    "pydata-sphinx-theme>=0.16.1",
+    "sphinx-autobuild>=2025.8.25",
+    "sphinx-codelinks>=1.1.0",
+    "sphinx-copybutton>=0.5.2",
+    "sphinx-design>=0.6.1",
+    "sphinx-needs[plotting]>=5.1.0",
+    "sphinx>=8.2.3",
+    "sphinxcontrib-doxylink>=1.13.0",
+    "sphinxcontrib-images>=1.0.1",
+    "sphinxcontrib-plantuml>=0.31",
+]
+
+[dependency-groups]
+dev = [
+    "esbonio>=0.16.5",
+    "rstcheck[sphinx,toml]>=6.2.5",
+    "ruff>=0.13.1",
+]
+
+[tool.uv]
+link-mode = "symlink"

@@ -1,0 +1,197 @@
+:root {
+  /* Colors */
+  --color-red-brand-01: #ed0007;
+  --color-red-brand-02: #d50005;
+  --color-red-brand-03: #a80003;
+  --color-turquoise-01: #00c8f7;
+  --color-turquoise-02: #00b9e5;
+  --color-turquoise-03: #009cc2;
+  --color-turquoise-04: #00738f;
+  --color-turquoise-05: #004d61;
+  --color-turquoise-06: #002936;
+  --color-grey-01: #edf1f4;
+  --color-grey-02: #cad6dd;
+  --color-grey-03: #a3bac8;
+  --color-grey-04: #99aebb;
+  --color-grey-05: #7995a6;
+  --color-grey-06: #506e81;
+  --color-grey-07: #476273;
+  --color-grey-08: #354956;
+  --color-grey-09: #2d3e48;
+  --color-grey-10: #1c272e;
+  --color-green-01: #d9e8d0;
+  --color-green-02: #528236;
+  --color-green-03: #1a2a11;
+  --color-yellow-01: #f9f3bc;
+  --color-yellow-02: #ebd417;
+  --color-yellow-03: #2a2604;
+  --color-red-01: #f7bfc8;
+  --color-red-02: #da1e28;
+  --color-red-03: #54000e;
+  --color-dark-blue-01: #d1dce3;
+  --color-dark-blue-02: #002b49;
+  --color-dark-blue-03: #00243e;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-prussian-blue: #002b49;
+  --color-aqua: #00ccff;
+  --color-monza: #ed0007;
+  --color-alabaster: #fcfcfc;
+  --color-black-haze: #e5e5e5;
+  --color-smalt-blue: #5a7c91;
+  --color-casper: #a3bac8;
+  --color-heather: #c0ced8;
+  --color-mine-shaft: #333333;
+  --color-dusty-gray: #969696;
+  --color-catskill-white: #e8eef1;
+  --color-mystic: #e8eef1;
+  --color-athens-gray: #f2f4f6;
+  --color-regent-gray: #7f95a4;
+  --color-loblolly: #bfcad1;
+  --color-athens-gray-darker: #e5eaed;
+  --color-anakiwa: #7fe5ff;
+  --color-onahau: #bff2ff;
+  --color-heather-darker: #acbdc8;
+  --color-geyser-brighter: #d6dee3;
+  --color-mauvelous: #ef7f91;
+  --color-gray: #7f7f7f;
+  --color-silver: #bfbfbf;
+  --color-midnight: #00243e;
+  --color-cerulian: #00add9;
+  --color-bali-hai: #8a9eaa;
+  --color-blue-bayoux: #4c697b;
+  --color-guardsman-red: #d50005;
+  --color-fern-green: #528236;
+  --color-azalea: #f7bfc8;
+  --color-sprout: #b3d1a1;
+  --color-apple: #67a344;
+  --color-kidnapper: #d9e8d0;
+  --color-geyser: #d1dce3;
+  --color-allports: #0066a2;
+  --color-deep-cerulean: #0182ae;
+  --color-lochinvar: #2a958d;
+  --color-atlantis: #aec32c;
+  --color-barberry: #ebd417;
+  --color-sea-buckthorn: #fbb034;
+  --color-jaffa: #f47932;
+
+  /* Theme variables */
+  --pst-header-height: 70px;
+
+  --pst-font-size-base: 1rem;
+
+  --pst-font-size-h1: 2.325rem;
+  --pst-font-size-h2: 1.825rem;
+  --pst-font-size-h3: 1.45rem;
+  --pst-font-size-h4: 1.2rem;
+  --pst-font-size-h5: 1rem;
+  --pst-font-size-h6: 1rem;
+
+  --pst-font-size-milli: 0.9rem;
+
+
+}
+
+
+html[data-theme="light"] {
+  --pst-color-primary: var(--color-turquoise-04);
+  --pst-color-accent: var(--color-turquoise-02);
+  --pst-color-secondary: var(--color-turquoise-06);
+
+  --pst-color-success: var(--color-green-02);
+  --pst-color-info: var(--color-cerulian);
+  --pst-color-warning: var(--color-sea-buckthorn);
+  --pst-color-danger: var(--color-monza);
+  --pst-color-text-base: var(--color-black);
+
+  --pst-color-primary-hover: var(--color-turquoise-03);
+  --pst-color-primary-active: var(--color-turquoise-04);
+  --pst-color-primary-inverted: var(--color-white);
+
+  --pst-color-link: var(--color-turquoise-04);
+  --pst-color-link-hover: var(--color-turquoise-05);
+
+  --pst-color-table-row-hover-bg: var(--color-turquoise-02);
+
+  --pst-footer-text-color: var(--color-white);
+
+}
+
+button.theme-switch-button {
+  display: none !important;
+}
+
+/* Header */
+.navbar-brand .logo__image {
+  max-height: 45px;
+  margin-right: 10px;
+}
+
+.logo__title {
+  color: var(--pst-color-text-heading);
+  font-size: var(--pst-font-size-h3);
+}
+
+
+/* Search */
+
+.search-button-field {
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+  background-color: var(--color-turquoise-01);
+  height: 100%;
+  width: 300px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.search-button-field:hover {
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+  background-color: var(--color-turquoise-01);
+}
+
+/* Footer */
+
+footer.bd-footer {
+  border-top: none;
+  width: 100%;
+  background-color: var(--color-prussian-blue);
+  color: var(--color-dark-blue-01);
+}
+
+.diagonal-line-wrapper {
+  position: relative;
+  height: 7vw;
+  overflow: hidden;
+}
+
+.diagonal-line::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0 solid transparent;
+    border-top-width: 0px;
+    border-top-color: transparent;
+    border-right-width: 0px;
+    border-right-color: transparent;
+  border-top-width: 7vw;
+  border-top-color: var(--pst-color-background);
+  border-right-width: 100vw;
+  border-right-color: var(--color-prussian-blue);
+}
+
+/* Project info */
+
+.project_version {
+  color: var(--color-grey-03);
+  font-family: var(--pst-font-family-heading);
+  font-size: var(--pst-font-size-milli);
+}
+
+img.project_logo {
+  max-width: 70%;
+}
