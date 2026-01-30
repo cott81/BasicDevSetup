@@ -71,7 +71,7 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}      
 
       - name: Set safe directory
-        run: git config --global --add safe.directory '/__w/basic_dev_setup/basic_dev_setup'
+        run: git config --global --add safe.directory /__w/BasicDevSetup/BasicDevSetup'
         shell: bash
 
       - name: Build Documentation
