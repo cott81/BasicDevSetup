@@ -11,12 +11,12 @@ on:
 jobs:
 
   build-and-test:
-    runs-on: [ my-runner]
+    runs-on: [ ubuntu-latest]
     container:
-      image: kid2le/base-build:dev-latest
+      image: ghcr.io/cott81/basic_dev_setup/base-build:dev-latest
       credentials:
-        username: ${{ vars.BCR_USERNAME_TEMP }}
-        password: ${{ secrets.BCR_TOKEN_TEMP  }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.github_token }}
       options: --user root
     
     strategy:
@@ -51,12 +51,12 @@ jobs:
         shell: bash
 
   build-documentation:
-    runs-on: [ my-runner]
+    runs-on: [ ubuntu-latest]
     container:
-      image: kid2le/base-build:dev-latest
+      image: ghcr.io/cott81/basic_dev_setup/base-build:dev-latest
       credentials:
-        username: ${{ vars.BCR_USERNAME_TEMP }}
-        password: ${{ secrets.BCR_TOKEN_TEMP  }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.github_token }}
       options: --user root
 
     steps:
